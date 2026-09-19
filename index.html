@@ -214,7 +214,7 @@
   // 1. PIN Check
   function unlockSite() {
     const pin = document.getElementById("pinInput").value;
-    if(pin === "1234") {
+    if(pin === "20112007") {
       document.getElementById("pinModal").style.display = "none";
       document.getElementById("mainContent").style.display = "block";
       toggleMusic();
@@ -224,7 +224,7 @@
   }
 
   // 2. Countdown Logic
-  const targetDate = new Date("2026-10-04T00:00:00").getTime();
+  const targetDate = new Date("2026-11-20T00:00:00").getTime();
   setInterval(() => {
     const now = new Date().getTime();
     const diff = targetDate - now;
