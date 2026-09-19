@@ -202,7 +202,66 @@
     function blowCandles() {
       document.getElementById("candles").innerText = "💨 💨 💨 💨";
       alert("Selamat Make a Wish!");
+
+<!-- 5. Elemen Musik & Tombol (Di luar script, tapi di dalam body) -->
+<audio id="bgMusic" loop>
+  <source src="lagu.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" class="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+
+<script>
+  // 1. PIN Check
+  function unlockSite() {
+    const pin = document.getElementById("pinInput").value;
+    if(pin === "1234") {
+      document.getElementById("pinModal").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+      toggleMusic();
+    } else {
+      alert("Kode PIN salah!");
     }
-  </script>
+  }
+
+  // 2. Countdown Logic
+  const targetDate = new Date("2026-10-04T00:00:00").getTime();
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+      document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      document.getElementById("minutes").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      document.getElementById("seconds").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+    } else {
+      document.getElementById("countdownNote").innerText = "🎉 Hari ini adalah hari spesialnya! 🎉";
+    }
+  }, 1000);
+
+  // 3. Buka Surat Botol
+  function openLetter() {
+    document.getElementById("letter").style.display = "block";
+  }
+
+  // 4. Tiup Lilin
+  function blowCandles() {
+    document.getElementById("candles").innerText = "💨 💨 💨 💨";
+    alert("Selamat Make a Wish!");
+  }
+
+  // 5. Fungsi Kontrol Musik
+  function toggleMusic() {
+    const bgMusic = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    if (bgMusic.paused) {
+      bgMusic.play();
+      musicBtn.innerText = "⏸️ Pause Music";
+    } else {
+      bgMusic.pause();
+      musicBtn.innerText = "🎵 Play Music";
+    }
+  }
+</script>
 </body>
 </html>
