@@ -13,17 +13,20 @@
       scroll-behavior: smooth;
     }
 
-    /* Sembunyikan teks awal & beri animasi bergerak naik saat dibuka */
+   /* Efek animasi tulisan surat saat muncul */
 .letter-content, #bottleMessage {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  animation: slideUpText 1s ease forwards;
 }
 
-/* Teks bergerak muncul saat botol diklik/dibuka */
-.letter-content.active, #bottleMessage.active, .open .letter-content {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes slideUpText {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
     body {
       background-color: #11050a;
@@ -647,7 +650,7 @@
     content.classList.toggle('active');
   }
 }
-    }
   </script>
+  <audio id="bgMusic" src="lagu.mp3" loop></audio>
 </body>
 </html>
