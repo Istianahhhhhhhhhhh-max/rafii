@@ -13,21 +13,6 @@
       scroll-behavior: smooth;
     }
 
-   /* Efek animasi tulisan surat saat muncul */
-.letter-content, #bottleMessage {
-  animation: slideUpText 1s ease forwards;
-}
-
-@keyframes slideUpText {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
     body {
       background-color: #11050a;
       color: #f7e6eb;
@@ -361,6 +346,18 @@
       line-height: 1.6;
       margin-top: 20px;
       border: 1px solid rgba(255, 133, 162, 0.2);
+      animation: slideUpText 0.8s ease forwards;
+    }
+
+    @keyframes slideUpText {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* WISHES CARDS GRID */
@@ -417,6 +414,7 @@
 </head>
 <body>
 
+  <!-- PASSCODE MODAL -->
   <div id="pinModal">
     <div class="pin-box">
       <p class="subtitle">FOR YOUR EYES ONLY</p>
@@ -426,6 +424,7 @@
     </div>
   </div>
 
+  <!-- MAIN CONTENT -->
   <div id="mainContent">
 
     <nav class="navbar">
@@ -463,36 +462,36 @@
       <div class="story-card">
         <p class="chapter">CHAPTER 001</p>
         <h3>where it all started</h3>
-        <p>“It all started with simple moments, little conversations, and somehow, you became someone who means so much to me.
-          Semua berawal dari momen-momen sederhana, obrolan kecil, dan entah bagaimana, kamu menjadi seseorang yang berarti.</p>
+        <p>“It all started with simple moments, little conversations, and somehow, you became someone who means so much to me.”<br><br>
+        Semua berawal dari momen-momen sederhana, obrolan kecil, dan entah bagaimana, kamu menjadi seseorang yang begitu berarti.</p>
       </div>
 
       <div class="story-card">
         <p class="chapter">CHAPTER 002</p>
         <h3>the quiet days</h3>
-        <p>“I’ve seen your quiet days, your little efforts, and all the things you keep working on.”
-          Aku melihat hari-hari tenangmu, usaha-usaha kecilmu, dan semua hal yang terus kamu perjuangkan.</p>
+        <p>“I’ve seen your quiet days, your little efforts, and all the things you keep working on.”<br><br>
+        Aku melihat hari-hari tenangmu, usaha-usaha kecilmu, dan semua hal yang terus kamu perjuangkan.</p>
       </div>
 
       <div class="story-card">
         <p class="chapter">CHAPTER 003</p>
         <h3>through the storms</h3>
-        <p>“I know it hasn’t always been easy, but I’m really proud of how you keep going and never give up on what matters to you.”
-          Aku tahu semuanya nggak selalu mudah, tapi aku benar-benar bangga melihatmu terus berusaha dan nggak menyerah pada hal-hal yang berarti untukmu.</p>
+        <p>“I know it hasn’t always been easy, but I’m really proud of how you keep going and never give up on what matters to you.”<br><br>
+        Aku tahu semuanya nggak selalu mudah, tapi aku benar-benar bangga melihatmu terus berusaha dan nggak menyerah pada hal-hal yang berarti untukmu.</p>
       </div>
 
       <div class="story-card">
         <p class="chapter">CHAPTER 004</p>
         <h3>finding the light</h3>
-        <p>“Seeing how far you’ve come makes me so proud. Keep going, keep growing, and always remember that I’ll be cheering for you.”
-          Melihat sejauh apa kamu sudah berkembang membuatku sangat bangga. Teruslah melangkah, terus berkembang, dan ingat bahwa aku akan selalu mendukungmu.</p>
+        <p>“Seeing how far you’ve come makes me so proud. Keep going, keep growing, and always remember that I’ll be cheering for you.”<br><br>
+        Melihat sejauh apa kamu sudah berkembang membuatku sangat bangga. Teruslah melangkah, terus berkembang, dan ingat bahwa aku akan selalu mendukungmu.</p>
       </div>
     </div>
 
     <div id="gallery">
       <div class="section-header">
         <p class="tag">WASHED ASHORE, JUST FOR YOU</p>
-        <h2><i>A few of my favorite shots of you</i><h2>
+        <h2><i>A few of my favorite shots of you</i></h2>
       </div>
 
       <div class="photo-grid">
@@ -506,11 +505,11 @@
         </div>
         <div class="photo-item">
           <img src="foto3.jpeg" alt="Foto 3">
-          <p>You've comeso far, and I'm so proud of how far you've made it.</p>
+          <p>You've come so far, and I'm so proud of how far you've made it.</p>
         </div>
         <div class="photo-item">
-          <img src="foto4.jpeg" alt="Foto 4">
-          <p>Still Keep going at your own pace. I'll always be cheering for you.</p>
+          <img src="photo4.jpeg" alt="Foto 4">
+          <p>Still keep going at your own pace. I'll always be cheering for you.</p>
         </div>
       </div>
     </div>
@@ -527,11 +526,11 @@
 
         <div id="letterContent" class="letter-content">
           <p><strong>Dear you,</strong></p><br>
-          <p>To  masss</p><br>
-          <p>I don't know if you'll get bored or not with my long words, i hope not! i hope you always like me give this, i want to hug you on your birthday, i want to say.</p><br>
-          <p> Happy birthday to u massss! selamat bertambah usia, di umur yang sekarang ini ade berdoa semoga maa selaluu dalam lindungan Allah Swt. selaluu sehatt, selaluu baikk, jadii seseorang yang selaluu tumbuh jadii lebih baikk. jadi pribadi yang lebih baikk buat diri sendirii juha buat orang lainn yaa mass, ngga kerasa yaa kitaa uda sejauh ini.</p>  
-          <p>Hopefully it will always be like that, it will never leave my life</p><br>
-          <p>My wish for you on your birthday: whatever you ask, may you receive; whatever you are looking for, may you find it; whatever you want, may it be fulfilled on your birthday. I hope you walk on this journey knowing that you are mine. I hope even if things sometimes don't go your way, you won't stop trying and you won't give up on yourself. In hard times, I hope you will remind yourself of these words: "You deserve better, you deserve to be loved and celebrated in every way!" I really hope and pray for you: may you always be blessed with good health and abundance, and surrounded by good and helpful people</p><br>
+          <p>To masss,</p><br>
+          <p>I don't know if you'll get bored or not with my long words, I hope not! I hope you always like me giving this, I want to hug you on your birthday, I want to say.</p><br>
+          <p>Happy birthday to u massss! Selamat bertambah usia, di umur yang sekarang ini ade berdoa semoga mas selalu dalam lindungan Allah SWT, selalu sehat, selalu baik, jadi seseorang yang selalu tumbuh jadi lebih baik. Jadi pribadi yang lebih baik buat diri sendiri juga buat orang lain ya mass, ngga kerasa ya kita uda sejauh ini.</p><br>
+          <p>Hopefully it will always be like that, you will never leave my life.</p><br>
+          <p>My wish for you on your birthday: whatever you ask, may you receive; whatever you are looking for, may you find it; whatever you want, may it be fulfilled on your birthday. I hope you walk on this journey knowing that you are mine. I hope even if things sometimes don't go your way, you won't stop trying and you won't give up on yourself. In hard times, I hope you will remind yourself of these words: "You deserve better, you deserve to be loved and celebrated in every way!" I really hope and pray for you: may you always be blessed with good health and abundance, and surrounded by good and helpful people.</p><br>
           <p>Aku akan jadi seseorang yang selalu bangga sama kamu, sama perjalanan kamu, dan sama semua yang kamu lakukan. Aku bakal selalu support keinginan kamu, hobi kamu, dan hal-hal lain yang lagi kamu tekuni. Aku akan selalu di sini nemenin kamu, percayalah itu. Kalau kamu butuh orang buat hal apa pun, kabari aku ya? Aku akan selalu ada buat kamu di mana pun dan kapan pun, I will always endeavour for that.</p><br>
           <p>If you feel your world feels heavy, I'm here to bring a little joy and tranquillity for you, dear. I will continue to be here to accompany you, be a place to share your stories and complaints, and be a home that isn't in the form of a house.</p><br>
           <p style="text-align: right; margin-top: 15px; font-style: italic;">— From Adee</p>
@@ -585,7 +584,7 @@
         document.getElementById("pinModal").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
         
-        // Putar musik otomatis saat PIN benar
+        // Autoplay musik saat PIN benar
         const bgMusic = document.getElementById("bgMusic");
         if (bgMusic) {
           bgMusic.play().then(() => {
@@ -595,7 +594,7 @@
           });
         }
       } else {
-        alert("Kode PIN salah! Coba masukkan PIN 20112007");
+        alert("Kode PIN salah! Coba masukkan PIN yang benar.");
       }
     }
 
@@ -621,13 +620,13 @@
     // 3. OPEN BOTTLE LETTER
     function openLetter() {
       const letter = document.getElementById("letterContent");
-      letter.style.display = letter.style.display === "block" ? "none" : "block";
+      letter.style.display = (letter.style.display === "block") ? "none" : "block";
     }
 
     // 4. BLOW CANDLES
     function blowCandles() {
       document.getElementById("candles").innerText = "💨 💨 💨 💨";
-      alert("Selamat berjuang dan jangan lupa bersukur atas keberhasilanmu, bahagia menantimul! 🎉");
+      alert("Selamat berjuang dan jangan lupa bersyukur atas keberhasilanmu, bahagia menantimu! 🎉");
     }
 
     // 5. TOGGLE MUSIC
@@ -637,23 +636,13 @@
       if (bgMusic) {
         if (bgMusic.paused) {
           bgMusic.play();
-          if (musicBtn) musicBtn.innerText = "⏸ Pause Music";
+          if (musicBtn) musicBtn.innerText = "⏸️ Pause Music";
         } else {
           bgMusic.pause();
           if (musicBtn) musicBtn.innerText = "🎵 Play Music";
         }
       }
     }
-
-    function openBottle() {
-      const content = document.querySelector('.letter-content');
-      if (content) {
-        content.classList.toggle('active');
-      }
-    }
   </script>
-
-  <audio id="bgMusic" src="lagu.mp3.mpeg" loop></audio>
-
 </body>
 </html>
