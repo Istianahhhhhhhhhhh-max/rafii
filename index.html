@@ -1,258 +1,583 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday!</title>
+  <title>Nabila's Birthday</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: #121212;
-      color: #ffffff;
+      background-color: #11050a;
+      color: #f7e6eb;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
+      align-items: flex-start;
+      overflow-x: hidden;
     }
 
-    /* Modal Passcode Entry */
+    /* PASSCODE MODAL (PINTU MASUK) */
     #pinModal {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(18, 18, 18, 0.95);
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #230814 0%, #0d0307 100%);
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 99999;
     }
 
     .pin-box {
-      background: #1e1e1e;
-      padding: 30px;
-      border-radius: 16px;
+      background: rgba(35, 12, 22, 0.7);
+      backdrop-filter: blur(15px);
+      padding: 40px 30px;
+      border-radius: 20px;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-      max-width: 320px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 0 1px rgba(255, 182, 193, 0.3);
+      max-width: 380px;
       width: 90%;
-      border: 1px solid #333;
+      border: 1px solid rgba(255, 105, 180, 0.15);
     }
 
-    .pin-box p {
-      font-size: 0.8rem;
-      color: #ff4d4d;
-      letter-spacing: 1px;
+    .pin-box p.subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: #ff6b8b;
       margin-bottom: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
     .pin-box h2 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      color: #ffffff;
+      font-weight: 600;
     }
 
     .pin-box input {
       width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ff4d4d;
-      background: #121212;
-      color: white;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 107, 139, 0.3);
+      background: rgba(15, 4, 9, 0.8);
+      color: #ffffff;
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      letter-spacing: 5px;
       margin-bottom: 20px;
       outline: none;
+      transition: 0.3s;
+    }
+
+    .pin-box input:focus {
+      border-color: #ff6b8b;
+      box-shadow: 0 0 10px rgba(255, 107, 139, 0.3);
     }
 
     .pin-box button {
       width: 100%;
-      padding: 12px;
-      border-radius: 20px;
+      padding: 14px;
+      border-radius: 25px;
       border: none;
-      background: #ff4d4d;
+      background: linear-gradient(135deg, #e6005c, #800033);
       color: white;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 0.95rem;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(230, 0, 92, 0.4);
     }
 
     .pin-box button:hover {
-      background: #e63939;
+      opacity: 0.9;
+      transform: translateY(-2px);
     }
 
-    /* Konten Utama */
+    /* KONTEN UTAMA */
     #mainContent {
       display: none;
       width: 100%;
-      max-width: 600px;
-      text-align: center;
+      max-width: 768px;
+      padding: 20px 15px 80px 15px;
     }
 
-    .card {
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      border: 1px solid #2a2a2a;
+    /* STICKY NAVBAR NAVIGATION */
+    .navbar {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: rgba(25, 7, 15, 0.75);
+      backdrop-filter: blur(12px);
+      padding: 10px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding-left: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-right: 10px;
+    }
+
+    .nav-links a {
+      color: #b38b99;
+      text-decoration: none;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ff85a2;
+    }
+
+    /* HERO & COUNTDOWN SECTION */
+    .hero-card {
+      background: radial-gradient(circle at top, #2d0a1b 0%, #17040d 100%);
+      border-radius: 24px;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255, 133, 162, 0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .hero-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #ff85a2;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .hero-title i {
+      font-style: italic;
+      color: #ff85a2;
+    }
+
+    .hero-description {
+      font-size: 0.85rem;
+      color: #c4a1ae;
+      max-width: 500px;
+      margin: 0 auto 25px auto;
+      line-height: 1.5;
     }
 
     .countdown {
       display: flex;
-      justify-content: space-around;
-      margin: 20px 0;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 25px;
     }
 
     .time-unit {
-      background: #2a2a2a;
-      padding: 10px 15px;
-      border-radius: 10px;
-      min-width: 60px;
+      background: rgba(45, 14, 28, 0.6);
+      border: 1px solid rgba(255, 133, 162, 0.2);
+      padding: 12px;
+      border-radius: 16px;
+      min-width: 65px;
     }
 
     .time-unit span {
       display: block;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #ff4d4d;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
     }
 
     .time-unit label {
-      font-size: 0.75rem;
-      color: #aaa;
+      font-size: 0.65rem;
+      color: #ff85a2;
+      letter-spacing: 1px;
     }
 
+    .btn-pink {
+      background: linear-gradient(135deg, #e6005c, #99003d);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(230, 0, 92, 0.3);
+    }
+
+    /* SECTION TITLE */
+    .section-header {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+
+    .section-header .tag {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: #ff85a2;
+      text-transform: uppercase;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-top: 5px;
+    }
+
+    /* CHAPTERS / OUR STORY SECTION */
+    .story-card {
+      background: #1a0610;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .story-card .chapter {
+      font-size: 0.65rem;
+      color: #ff85a2;
+      letter-spacing: 1px;
+    }
+
+    .story-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin: 4px 0 8px 0;
+    }
+
+    .story-card p {
+      font-size: 0.8rem;
+      color: #b38b99;
+      line-height: 1.4;
+    }
+
+    /* PHOTO GALLERY */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 15px;
+      gap: 12px;
     }
 
-    .photo-grid img {
+    .photo-item {
+      background: #1a0610;
+      border-radius: 16px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .photo-item img {
       width: 100%;
       height: 180px;
       object-fit: cover;
       border-radius: 12px;
+      display: block;
     }
 
-    .btn-action {
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 10px 20px;
+    .photo-item p {
+      font-size: 0.75rem;
+      color: #b38b99;
+      margin-top: 8px;
+      padding: 0 4px;
+      line-height: 1.3;
+    }
+
+    /* BOTTLE LETTER SECTION */
+    .bottle-box {
+      background: radial-gradient(circle at center, #290818 0%, #14030b 100%);
       border-radius: 20px;
-      cursor: pointer;
-      margin-top: 10px;
-      font-weight: bold;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 133, 162, 0.15);
     }
 
-    /* Floating Music Button */
+    .bottle-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      cursor: pointer;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .bottle-icon:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .letter-content {
+      display: none;
+      background: rgba(20, 5, 12, 0.8);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 0.85rem;
+      color: #e6c2cf;
+      line-height: 1.6;
+      margin-top: 20px;
+      border: 1px solid rgba(255, 133, 162, 0.2);
+    }
+
+    /* WISHES CARDS GRID */
+    .wishes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .wish-card {
+      background: #1a0610;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.78rem;
+      color: #c4a1ae;
+      line-height: 1.4;
+    }
+
+    /* CANDLE SECTION */
+    .candle-box {
+      text-align: center;
+      padding: 40px 20px;
+      background: #18050e;
+      border-radius: 24px;
+      margin-top: 30px;
+      border: 1px solid rgba(255, 133, 162, 0.1);
+    }
+
+    .candles {
+      font-size: 2.5rem;
+      margin: 20px 0;
+      letter-spacing: 5px;
+    }
+
+    /* FLOATING MUSIC BUTTON */
     .music-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: rgba(255, 77, 77, 0.9);
+      background: rgba(230, 0, 92, 0.85);
+      backdrop-filter: blur(8px);
       color: white;
       border: none;
       padding: 10px 18px;
       border-radius: 25px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       cursor: pointer;
       z-index: 999;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
 <body>
 
-  <!-- Modal PIN -->
   <div id="pinModal">
     <div class="pin-box">
-      <p>FOR YOUR EYES ONLY</p>
+      <p class="subtitle">FOR YOUR EYES ONLY</p>
       <h2>Enter Your Secret Code</h2>
-      <input type="password" id="pinInput" placeholder="Enter PIN">
+      <input type="password" id="pinInput" placeholder="••••">
       <button onclick="unlockSite()">UNLOCK ✨</button>
     </div>
   </div>
 
-  <!-- Konten Utama Website -->
   <div id="mainContent">
-    <div class="card">
-      <h2>🎉 Birthday Countdown</h2>
+
+    <nav class="navbar">
+      <div class="brand">Nabila's Birthday</div>
+      <div class="nav-links">
+        <a href="#surface">Surface</a>
+        <a href="#memories">Our Memories</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#letter">The Letter</a>
+        <a href="#wishes">Wishes</a>
+      </div>
+    </nav>
+
+    <div id="surface" class="hero-card">
+      <p class="hero-subtitle">A MESSAGE CARRIED ON THE TIDE, FOR YOU</p>
+      <h1 class="hero-title">Happy Birthday,<br><i>My Favorite Person</i></h1>
+      <p class="hero-description">Somewhere past the breakers, sits a letter yang udah lama waiting for this day. Scroll down, the tide is coming in...</p>
+
       <div class="countdown">
-        <div class="time-unit"><span id="days">00</span><label>Hari</label></div>
-        <div class="time-unit"><span id="hours">00</span><label>Jam</label></div>
-        <div class="time-unit"><span id="minutes">00</span><label>Menit</label></div>
-        <div class="time-unit"><span id="seconds">00</span><label>Detik</label></div>
+        <div class="time-unit"><span id="days">00</span><label>HARI</label></div>
+        <div class="time-unit"><span id="hours">00</span><label>JAM</label></div>
+        <div class="time-unit"><span id="minutes">00</span><label>MENIT</label></div>
+        <div class="time-unit"><span id="seconds">00</span><label>DETIK</label></div>
       </div>
-      <p id="countdownNote" style="color: #aaa; font-size: 0.9rem;"></p>
+
+      <a href="#letter" class="btn-pink">Jump Straight to the Letter</a>
     </div>
 
-    <div class="card">
-      <h3 style="margin-bottom: 15px;">A few of my favorite shots of you</h3>
+    <div id="memories">
+      <div class="section-header">
+        <p class="tag">THE DEEPER SHOALS, ARE FEW TODAY</p>
+        <h2>Chapters from <i>our story</i></h2>
+      </div>
+
+      <div class="story-card">
+        <p class="chapter">CHAPTER 001</p>
+        <h3>where it all started</h3>
+        <p>Ada saat di mana segalanya terasa biasa aja, lalu satu momen kecil merubah semuanya.</p>
+      </div>
+
+      <div class="story-card">
+        <p class="chapter">CHAPTER 002</p>
+        <h3>the quiet days</h3>
+        <p>Hari-hari tenang yang dilewati bersama, sederhana tapi sangat berarti.</p>
+      </div>
+
+      <div class="story-card">
+        <p class="chapter">CHAPTER 003</p>
+        <h3>through the storms</h3>
+        <p>Setiap tantangan yang berhasil dilalui bersama membuktikan betapa kuatnya kita.</p>
+      </div>
+
+      <div class="story-card">
+        <p class="chapter">CHAPTER 004</p>
+        <h3>finding the light</h3>
+        <p>Kamu selalu menjadi bagian terbaik dan paling terang dalam hari-hariku.</p>
+      </div>
+    </div>
+
+    <div id="gallery">
+      <div class="section-header">
+        <p class="tag">WASHED ASHORE, JUST FOR YOU</p>
+        <h2>A few of my favorite <i>shots of you</i></h2>
+      </div>
+
       <div class="photo-grid">
-        <img src="foto1.jpeg" alt="Foto 1">
-        <img src="foto2.jpeg" alt="Foto 2">
-        <img src="foto3.jpeg" alt="Foto 3">
-        <img src="foto4.jpeg" alt="Foto 4">
+        <div class="photo-item">
+          <img src="foto1.jpeg" alt="Foto 1">
+          <p>Tell me who scales the wall when you get hit by photo fever.</p>
+        </div>
+        <div class="photo-item">
+          <img src="foto2.jpg" alt="Foto 2">
+          <p>You're literally the reason my heart feels full, 100% real.</p>
+        </div>
+        <div class="photo-item">
+          <img src="foto3.jpg" alt="Foto 3">
+          <p>Every single smile with you in it, leads straight into my heart.</p>
+        </div>
+        <div class="photo-item">
+          <img src="foto4.jpg" alt="Foto 4">
+          <p>Still my favorite person, always, forever and ever.</p>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <h3>📜 Surat Dalam Botol</h3>
-      <button class="btn-action" onclick="openLetter()">Buka Surat</button>
-      <div id="letter" style="display:none; margin-top: 15px; text-align: left; background: #252525; padding: 15px; border-radius: 8px;">
-        <p>Selamat ulang tahun! Semoga semua impian dan cita-citamu tercapai. Tetaplah menjadi pribadi yang baik dan menyenangkan!</p>
+    <div id="letter" style="margin-top: 40px;">
+      <div class="section-header">
+        <p class="tag">A BOTTLE, FINALLY ASHORE FOR YOU</p>
+        <h2>Open when <i>found</i></h2>
+      </div>
+
+      <div class="bottle-box">
+        <div class="bottle-icon" onclick="openLetter()">🍾</div>
+        <p style="font-size: 0.8rem; color: #ff85a2;">TAP THE BOTTLE TO OPEN IT</p>
+
+        <div id="letterContent" class="letter-content">
+          <p><strong>Dear you,</strong></p><br>
+          <p>Okay so I kinda wanted to send this the way old sailors used to send word home — sealed up, set adrift, and just trusting it'd find its way to you somehow. Kayak sebuah pesan kecil yang dilepas ke lautan dan berharap akhirnya sampai tepat ke orang yang dituju.</p><br>
+          <p>Ngl today's literally your day. I hope it feels exactly like that: unrushed, warm, and full of all the good things. Semoga hari ini berjalan pelan, nyaman, dan dipenuhi hal-hal kecil yang bikin kamu senyum.</p><br>
+          <p>Thank you for being the kind of person whose presence makes even the most ordinary days feel worth remembering. Makasih udah hadir!</p>
+          <p style="text-align: right; margin-top: 15px; font-style: italic;">— with so much love, always</p>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <h3>🎂 Tiup Lilin</h3>
-      <div id="candles" style="font-size: 2rem; margin: 10px 0;">🕯️ 🕯️ 🕯️ 🕯️</div>
-      <button class="btn-action" onclick="blowCandles()">Tiup Lilin 💨</button>
+    <div id="wishes">
+      <div class="section-header">
+        <p class="tag">SENT WITH THE CURRENT, FOR YOU</p>
+        <h2>Wishes for <i>the year ahead</i></h2>
+      </div>
+
+      <div class="wishes-grid">
+        <div class="wish-card">
+          May this year give you all the calm of the ocean, dan sediakan kamu juga hati kamu yang selalu penuh dengan kindness.
+        </div>
+        <div class="wish-card">
+          Hope your days stay this bright, membawa tenang mental di atas water, and your nights bring peaceful rest.
+        </div>
+        <div class="wish-card">
+          May every wish kamu pelan-pelan come true, exactly when you need it the most, no cap.
+        </div>
+        <div class="wish-card">
+          Happy birthday laly — cheers buat another year penuh memories yang bakal selalu worth keeping.
+        </div>
+      </div>
     </div>
+
+    <div class="candle-box">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem;">Happy Birthday, <i>truly.</i></h2>
+      <p style="font-size: 0.8rem; color: #b38b99; margin-top: 10px;">Makasih udah ngasih aku kesempatan buat bikin hari kamu terasa sedikit lebih spesial.</p>
+      
+      <div id="candles" class="candles">🕯️ 🕯️ 🕯️ 🕯️</div>
+      <button class="btn-pink" onclick="blowCandles()">Make a wish / Tiup Lilin 💨</button>
+    </div>
+
   </div>
 
-  <!-- Audio Element -->
   <audio id="bgMusic" loop>
     <source src="lagu.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Floating Music Button -->
   <button id="musicBtn" class="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
 
-  <!-- Script JavaScript -->
   <script>
-    // 1. Fungsi Buka Kode PIN
+    // 1. PIN UNLOCK & AUTOPLAY MUSIC
     function unlockSite() {
       const pin = document.getElementById("pinInput").value;
-      if (pin === "20112007") {
+      if (pin === "1234") {
         document.getElementById("pinModal").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
         
-        // Coba putar musik otomatis saat PIN benar
+        // Putar musik otomatis saat PIN benar
         const bgMusic = document.getElementById("bgMusic");
         if (bgMusic) {
-          bgMusic.play().catch(function(error) {
-            console.log("Autoplay diblokir browser, gunakan tombol musik.");
+          bgMusic.play().then(() => {
+            document.getElementById("musicBtn").innerText = "⏸️ Pause Music";
+          }).catch(err => {
+            console.log("Autoplay diblokir browser, klik tombol musik manual.");
           });
-          document.getElementById("musicBtn").innerText = "⏸️ Pause Music";
         }
       } else {
-        alert("Kode PIN salah!");
+        alert("Kode PIN salah! Coba masukkan PIN 1234");
       }
     }
 
-    // 2. Logika Hitung Mundur
-    const targetDate = new Date("2026-11-20T00:00:00").getTime();
+    // 2. COUNTDOWN TIMER LOGIC
+    const targetDate = new Date("2026-10-04T00:00:00").getTime();
     setInterval(function() {
       const now = new Date().getTime();
       const diff = targetDate - now;
@@ -263,22 +588,26 @@
         document.getElementById("minutes").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         document.getElementById("seconds").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
       } else {
-        document.getElementById("countdownNote").innerText = "🎉 Selamat Ulang Tahun! 🎉";
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
       }
     }, 1000);
 
-    // 3. Fungsi Buka Surat Botol
+    // 3. OPEN BOTTLE LETTER
     function openLetter() {
-      document.getElementById("letter").style.display = "block";
+      const letter = document.getElementById("letterContent");
+      letter.style.display = letter.style.display === "block" ? "none" : "block";
     }
 
-    // 4. Fungsi Tiup Lilin
+    // 4. BLOW CANDLES
     function blowCandles() {
       document.getElementById("candles").innerText = "💨 💨 💨 💨";
-      alert("Selamat Make a Wish!");
+      alert("Selamat Make a Wish! Semoga semua impianmu terkabul! 🎉");
     }
 
-    // 5. Fungsi Kontrol Tombol Musik
+    // 5. TOGGLE MUSIC
     function toggleMusic() {
       const bgMusic = document.getElementById("bgMusic");
       const musicBtn = document.getElementById("musicBtn");
