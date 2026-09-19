@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nabila's Birthday</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #0d060a;
+      color: #f3e5f5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Modal Passcode (Video 2) */
+    .pin-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100vh;
+      background: #12000b;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 999;
+    }
+    .pin-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 105, 180, 0.2);
+      padding: 30px; border-radius: 20px; text-align: center;
+      max-width: 360px; width: 90%;
+    }
+    .pin-input {
+      width: 100%; padding: 12px; margin: 20px 0;
+      background: rgba(0, 0, 0, 0.5); border: 1px solid #e91e63;
+      border-radius: 8px; color: #fff; text-align: center;
+      font-size: 1.2rem; letter-spacing: 5px;
+    }
+    .btn-unlock {
+      background: #e91e63; color: #fff; border: none;
+      padding: 10px 25px; border-radius: 20px; cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Container Utama Website */
+    .main-content { display: none; padding: 20px; max-width: 800px; margin: 0 auto; }
+
+    /* Component Countdown Timer (Video 1) */
+    .countdown-card {
+      text-align: center; padding: 30px 15px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px; margin-bottom: 40px;
+    }
+    .countdown-title { font-size: 0.65rem; letter-spacing: 3px; color: #f8bbd0; margin-bottom: 8px; }
+    .countdown-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 6px; }
+    .countdown-sub { font-size: 0.8rem; color: #ce93d8; font-style: italic; margin-bottom: 25px; }
+    .timer-grid { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .timer-box {
+      background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(233, 30, 99, 0.3);
+      border-radius: 10px; padding: 10px; min-width: 60px;
+    }
+    .timer-box span { font-size: 1.5rem; font-weight: bold; display: block; font-family: monospace; }
+    .timer-box label { font-size: 0.6rem; color: #f8bbd0; }
+
+    /* Bagian Konten Video 2 */
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; margin: 40px 0 20px; }
+    
+    /* Memory Cards Carousel */
+    .cards-list { display: flex; flex-direction: column; gap: 15px; }
+    .card-item {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      padding: 15px; border-radius: 12px;
+    }
+
+    /* Galeri Foto */
+    .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .photo-grid img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: cover; }
+
+    /* Botol Pesan */
+    .bottle-box { text-align: center; padding: 40px 0; }
+    .bottle-icon { font-size: 3rem; cursor: pointer; transition: transform 0.3s; }
+    .bottle-icon:hover { transform: scale(1.1); }
+    .letter-content { display: none; background: rgba(255,255,255,0.04); padding: 20px; border-radius: 12px; margin-top: 20px; }
+
+    /* Lilin Interaktif */
+    .candles-box { text-align: center; margin: 50px 0; }
+    .candles { font-size: 2rem; letter-spacing: 5px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Screen PIN (Video 2 Opening) -->
+  <div class="pin-modal" id="pinModal">
+    <div class="pin-box">
+      <p style="font-size: 0.7rem; color: #e91e63;">FOR YOUR EYES ONLY</p>
+      <h3 style="margin-top: 5px;">Enter Your Secret Code</h3>
+      <input type="password" id="pinInput" class="pin-input" maxlength="4" placeholder="••••">
+      <button class="btn-unlock" onclick="unlockSite()">UNLOCK ✨</button>
+    </div>
+  </div>
+
+  <!-- 2. Isi Website Utama -->
+  <div class="main-content" id="mainContent">
+
+    <!-- FITUR VIDEO 1: Countdown Timer -->
+    <div class="countdown-card">
+      <div class="countdown-title">✦ MENGHITUNG HARI ✦</div>
+      <h2 class="countdown-header">Her Special Day is Coming</h2>
+      <p class="countdown-sub">Sesuatu yang indah sedang menunggu waktunya 🤍</p>
+
+      <div class="timer-grid">
+        <div class="timer-box"><span id="days">00</span><label>HARI</label></div>
+        <div class="timer-box"><span id="hours">00</span><label>JAM</label></div>
+        <div class="timer-box"><span id="minutes">00</span><label>MENIT</label></div>
+        <div class="timer-box"><span id="seconds">00</span><label>DETIK</label></div>
+      </div>
+      <p id="countdownNote" style="font-size: 0.75rem; color: #b0bec5;">✨ Beberapa detik lagi... ✨</p>
+    </div>
+
+    <!-- FITUR VIDEO 2: Header Utama -->
+    <h1 class="section-title">Happy Birthday, My Favorite Person</h1>
+
+    <!-- FITUR VIDEO 2: Our Memories -->
+    <h2 style="font-size: 1.2rem; margin: 30px 0 10px;">Chapters from our story</h2>
+    <div class="cards-list">
+      <div class="card-item">
+        <small style="color: #e91e63;">CHAPTER 01</small>
+        <h4>where it all started</h4>
+        <p style="font-size: 0.8rem; opacity: 0.8;">Awal dari semua cerita indah yang kita buat bersama.</p>
+      </div>
+      <div class="card-item">
+        <small style="color: #e91e63;">CHAPTER 02</small>
+        <h4>finding the light</h4>
+        <p style="font-size: 0.8rem; opacity: 0.8;">Kamu selalu jadi bagian terfavorit dalam setiap hariku.</p>
+      </div>
+    </div>
+
+    <!-- FITUR VIDEO 2: Galeri Foto -->
+    <h2 class="section-title" style="font-size: 1.4rem;">A few of my favorite shots of you</h2>
+    <div class="photo-grid">
+      <img src="https://via.placeholder.com/300" alt="Foto 1">
+      <img src="https://via.placeholder.com/300" alt="Foto 2">
+      <img src="https://via.placeholder.com/300" alt="Foto 3">
+      <img src="https://via.placeholder.com/300" alt="Foto 4">
+    </div>
+
+    <!-- FITUR VIDEO 2: Surat Botol (Open When Found) -->
+    <div class="bottle-box">
+      <h2>Open when found</h2>
+      <div class="bottle-icon" onclick="openLetter()">🍾</div>
+      <p style="font-size: 0.75rem; color: #ce93d8;">TAP THE BOTTLE TO OPEN IT</p>
+      <div class="letter-content" id="letter">
+        <h3>Dear you,</h3>
+        <p style="font-size: 0.85rem; line-height: 1.6; margin-top: 10px;">
+          Terima kasih sudah ada dan membawa banyak kebahagiaan. Semoga di usiamu yang baru ini, semua impian dan cita-citamu perlahan tercapai!
+        </p>
+      </div>
+    </div>
+
+    <!-- FITUR VIDEO 2: Tiup Lilin -->
+    <div class="candles-box">
+      <h2 class="section-title" style="font-size: 1.4rem;">Happy Birthday, truly.</h2>
+      <div class="candles" id="candles">🕯️ 🕯️ 🕯️ 🕯️</div>
+      <button class="btn-unlock" onclick="blowCandles()">Make a Wish (Tiup Lilin)</button>
+    </div>
+
+  </div>
+
+  <script>
+    // 1. PIN Check
+    function unlockSite() {
+      const pin = document.getElementById("pinInput").value;
+      if(pin === "20112007") { // Ubah angka PIN rahasia di sini
+        document.getElementById("pinModal").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      } else {
+        alert("Kode PIN salah!");
+      }
+    }
+
+    // 2. Countdown Logic (Set tanggal ultah)
+    const targetDate = new Date("2026-10-04T00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      } else {
+        document.getElementById("countdownNote").innerText = "🎉 Hari ini adalah hari spesialnya! 🎉";
+      }
+    }, 1000);
+
+    // 3. Buka Surat Botol
+    function openLetter() {
+      document.getElementById("letter").style.display = "block";
+    }
+
+    // 4. Tiup Lilin
+    function blowCandles() {
+      document.getElementById("candles").innerText = "💨 💨 💨 💨";
+      alert("Selamat Make a Wish!");
+    }
+  </script>
+</body>
+</html>
