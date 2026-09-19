@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nabila's Birthday</title>
+  <title>Rafi Noviyanto Pratama</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,20 +13,17 @@
       scroll-behavior: smooth;
     }
 
-    /* Animasi teks surat meluncur naik dan memudar masuk */
-#bottleModal p, .letter-modal p, .letter-content p {
-  animation: textSlideUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    /* Sembunyikan teks awal & beri animasi bergerak naik saat dibuka */
+.letter-content, #bottleMessage {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-@keyframes textSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Teks bergerak muncul saat botol diklik/dibuka */
+.letter-content.active, #bottleMessage.active, .open .letter-content {
+  opacity: 1;
+  transform: translateY(0);
 }
     body {
       background-color: #11050a;
@@ -524,12 +521,17 @@
         <div id="letterContent" class="letter-content">
           <p><strong>Dear you,</strong></p><br>
           <p>Haloo masss
-I don't know if you'll get bored or not with my long words, i hope not! i hope you always like me give this, i want to hug you on your birthday, i want to say.
-Happy birthday to u massss! selamat bertambah usia, di umur yang sekarang ini ade berdoa semoga maa selaluu dalam lindungan Allah Swt. selaluu sehatt, selaluu baikk, jadii seseorang yang selaluu tumbuh jadii lebih baikk. jadi pribadi yang lebih baikk buat diri sendirii juha buat orang lainn yaa mass, ngga kerasa yaa kitaa uda sejauh ini.
-Hopefully it will always be like that, it will never leave my life
-My wish for you on your birthday: whatever you ask, may you receive; whatever you are looking for, may you find it; whatever you want, may it be fulfilled on your birthday. I hope you walk on this journey knowing that you are mine. I hope even if things sometimes don't go your way, you won't stop trying and you won't give up on yourself. In hard times, I hope you will remind yourself of these words: "You deserve better, you deserve to be loved and celebrated in every way!" I really hope and pray for you: may you always be blessed with good health and abundance, and surrounded by good and helpful people
-Aku akan jadi seseorang yang selalu bangga sama kamu, sama perjalanan kamu, dan sama semua yang kamu lakukan. Aku bakal selalu support keinginan kamu, hobi kamu, dan hal-hal lain yang lagi kamu tekuni. Aku akan selalu di sini nemenin kamu, percayalah itu. Kalau kamu butuh orang buat hal apa pun, kabari aku ya? Aku akan selalu ada buat kamu di mana pun dan kapan pun, I will always endeavour for that.
-If you feel your world feels heavy, I'm here to bring a little joy and tranquillity for you, dear. I will continue to be here to accompany you, be a place to share your stories and complaints, and be a home that isn't in the form of a house.</p><br>
+            I don't know if you'll get bored or not with my long words, i hope not! i hope you always like me give this, i want to hug you on your birthday, i want to say.
+            
+            Happy birthday to u massss! selamat bertambah usia, di umur yang sekarang ini ade berdoa semoga maa selaluu dalam lindungan Allah Swt. selaluu sehatt, selaluu baikk, jadii seseorang yang selaluu tumbuh jadii lebih baikk. jadi pribadi yang lebih baikk buat diri sendirii juha buat orang lainn yaa mass, ngga kerasa yaa kitaa uda sejauh ini.
+            
+            Hopefully it will always be like that, it will never leave my life
+            
+            My wish for you on your birthday: whatever you ask, may you receive; whatever you are looking for, may you find it; whatever you want, may it be fulfilled on your birthday. I hope you walk on this journey knowing that you are mine. I hope even if things sometimes don't go your way, you won't stop trying and you won't give up on yourself. In hard times, I hope you will remind yourself of these words: "You deserve better, you deserve to be loved and celebrated in every way!" I really hope and pray for you: may you always be blessed with good health and abundance, and surrounded by good and helpful people
+            
+            Aku akan jadi seseorang yang selalu bangga sama kamu, sama perjalanan kamu, dan sama semua yang kamu lakukan. Aku bakal selalu support keinginan kamu, hobi kamu, dan hal-hal lain yang lagi kamu tekuni. Aku akan selalu di sini nemenin kamu, percayalah itu. Kalau kamu butuh orang buat hal apa pun, kabari aku ya? Aku akan selalu ada buat kamu di mana pun dan kapan pun, I will always endeavour for that.
+            
+            If you feel your world feels heavy, I'm here to bring a little joy and tranquillity for you, dear. I will continue to be here to accompany you, be a place to share your stories and complaints, and be a home that isn't in the form of a house.</p><br>
           <p>Ngl today's literally your day. I hope it feels exactly like that: unrushed, warm, and full of all the good things. Semoga hari ini berjalan pelan, nyaman, dan dipenuhi hal-hal kecil yang bikin kamu senyum.</p><br>
           <p>Thank you for being the kind of person whose presence makes even the most ordinary days feel worth remembering. Makasih udah hadir!</p>
           <p style="text-align: right; margin-top: 15px; font-style: italic;">— with so much love, always</p>
@@ -639,6 +641,12 @@ If you feel your world feels heavy, I'm here to bring a little joy and tranquill
         bgMusic.pause();
         musicBtn.innerText = "🎵 Play Music";
       }
+      function openBottle() {
+  const content = document.querySelector('.letter-content');
+  if (content) {
+    content.classList.toggle('active');
+  }
+}
     }
   </script>
 </body>
